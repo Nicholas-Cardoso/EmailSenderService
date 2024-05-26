@@ -13,4 +13,6 @@ data class BodyMail(
     val recipientMail: String,
     val subject: String,
     val createdAt: LocalDateTime = LocalDateTime.now()
-)
+) {
+    constructor() : this(null, "", "", LocalDateTime.now())
+}

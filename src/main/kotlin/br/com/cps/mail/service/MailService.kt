@@ -6,9 +6,10 @@ import br.com.cps.mail.dto.MailView
 import br.com.cps.mail.exception.NotFoundException
 import br.com.cps.mail.mapper.MailFormMapper
 import br.com.cps.mail.mapper.MailViewMapper
-import br.com.cps.mail.model.BodyMail
 import br.com.cps.mail.repository.MailRepository
 import br.com.cps.mail.util.senderMail
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 private const val notFound = "Mail not found."
@@ -20,7 +21,9 @@ class MailService(
     private val toForm: MailFormMapper,
     private val keyVault: KeyVaultConfig
 ) {
-    fun getAllListMails(): MutableList<BodyMail> = repository.findAll()
+    fun getAllListMails(page: Pageable): Page<MailView> {
+        return toView.mapToPage(repository.findAll(page))
+    }
 
     fun getMailById(id: Long): MailView {
         val mail = findMailById(id)
