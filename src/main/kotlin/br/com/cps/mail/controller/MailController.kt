@@ -16,6 +16,6 @@ class MailController(
     @GetMapping("/{id}")
     fun getMailById(@PathVariable id: Long) = service.getMailById(id)
 
-    @RequestMapping(value = ["/send-mail"], method = [RequestMethod.POST])
+    @PostMapping
     fun createMails(@RequestBody @Valid bodyMail: MailForm) = service.createBodyMails(bodyMail)
 }
