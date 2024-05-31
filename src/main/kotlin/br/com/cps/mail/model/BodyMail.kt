@@ -10,9 +10,9 @@ import java.time.LocalDateTime
 data class BodyMail(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    val recipientMail: String,
+    val recipientMail: List<String>,
     val subject: String,
     val createdAt: LocalDateTime = LocalDateTime.now()
 ) {
-    constructor() : this(null, "", "", LocalDateTime.now())
+    constructor() : this(null, mutableListOf(), "", LocalDateTime.now())
 }

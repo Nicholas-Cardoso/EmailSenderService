@@ -11,7 +11,6 @@ class MailViewMapper : Mapper<BodyMail, MailView> {
     override fun map(t: BodyMail): MailView {
         return MailView(
             id = t.id,
-            recipientMail = t.recipientMail,
             subject = t.subject,
             createdAt = t.createdAt
         )
@@ -21,7 +20,6 @@ class MailViewMapper : Mapper<BodyMail, MailView> {
         val mails = t.content.map {
             MailView(
                 id = it.id,
-                recipientMail = it.recipientMail,
                 subject = it.subject,
                 createdAt = it.createdAt
             )

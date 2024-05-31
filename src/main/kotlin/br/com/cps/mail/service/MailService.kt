@@ -21,9 +21,7 @@ class MailService(
     private val toForm: MailFormMapper,
     private val keyVault: KeyVaultConfig
 ) {
-    fun getAllListMails(page: Pageable): Page<MailView> {
-        return toView.mapToPage(repository.findAll(page))
-    }
+    fun getAllListMails(page: Pageable): Page<MailView> = toView.mapToPage(repository.findAll(page))
 
     fun getMailById(id: Long): MailView {
         val mail = findMailById(id)
@@ -37,9 +35,8 @@ class MailService(
         return toView.map(mailToBody)
     }
 
-    private fun findMailById(id: Long) =
-        repository.findById(id)
-            .orElseThrow {
-                NotFoundException(notFound)
-            }
+    private fun findMailById(id: Long) = repository.findById(id)
+        .orElseThrow {
+            NotFoundException(notFound)
+        }
 }
