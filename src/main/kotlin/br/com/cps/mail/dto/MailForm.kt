@@ -9,6 +9,5 @@ data class MailForm(
     val subject: String,
     @field:NotBlank(message = "Body cannot be null or empty.")
     val body: String,
-    @field:NotNull(message = "HasAttachment cannot be null")
     val hasAttachment: Boolean = false
 )
